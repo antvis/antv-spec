@@ -2,9 +2,30 @@
   "name": "@antv/antv-spec",
   "version": "0.1.0",
   "description": "A declarative grammar that supports various technology stacks of AntV.",
-  "main": "index.js",
+  "main": "lib/src/index.js",
+  "types": "lib/src/index.d.ts",
+  "browser": "dist/index.js",
+  "module": "es/src/index.js",
+  "files": [
+    "src",
+    "esm",
+    "lib",
+    "build"
+  ],
   "scripts": {
-    "test": "jest"
+    "format": "prettier --write \"src/**/*.ts\" \"__tests__/**/*.ts\"",
+    "format-check": " prettier ./src/**/*.ts ./__tests__/**/*.ts --check",
+    "lint": "eslint ./src/**/*.ts ./__tests__/**/*.ts && npm run format-check",
+    "fix": "eslint ./src/**/*.ts ./__tests__/**/*.ts --fix && npm run format",
+    "test": "jest",
+    "size": "limit-size",
+    "build:umd": "rimraf ./dist && rollup -c && npm run size",
+    "build:cjs": "rimraf ./lib && tsc --module commonjs --outDir lib",
+    "build:esm": "rimraf ./esm && tsc --module ESNext --outDir esm",
+    "build": "run-p build:*",
+    "clean": "rimraf lib esm dist",
+    "schema": "mkdir -p build && ts-json-schema-generator -f tsconfig.json -p src/index.ts -t AntVSpec --no-type-check --no-ref-encode > build/antv-spec.json",
+    "ci": "run-s lint test build"
   },
   "repository": {
     "type": "git",
@@ -20,6 +41,8 @@
   },
   "homepage": "https://github.com/antvis/antv-spec#readme",
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.0.1",
+    "@rollup/plugin-typescript": "^8.2.3",
     "@types/jest": "^26.0.24",
     "@types/jest-json-schema": "^2.1.3",
     "@typescript-eslint/eslint-plugin": "^4.28.3",
@@ -33,7 +56,14 @@
     "eslint-plugin-react": "^7.24.0",
     "jest": "^27.0.6",
     "jest-json-schema": "^5.0.0",
+    "limit-size": "^0.1.4",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.3.2",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.53.2",
+    "rollup-plugin-uglify": "^6.0.4",
     "ts-jest": "^27.0.3",
+    "ts-json-schema-generator": "^0.94.1",
     "typescript": "^4.3.5"
   }
 }
