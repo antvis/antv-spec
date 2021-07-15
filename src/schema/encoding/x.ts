@@ -1,1 +1,5 @@
-export type X = any;
+export interface X {
+  field: string;
+  type: string;
+  axis?: any;
+}
