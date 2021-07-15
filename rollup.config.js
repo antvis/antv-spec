@@ -6,7 +6,7 @@ module.exports = [
   {
     input: 'src/index.ts',
     output: {
-      file: 'dist/antv-spec.min.js',
+      file: 'dist/index.min.js',
       name: 'antv-spec',
       format: 'umd',
       sourcemap: false,

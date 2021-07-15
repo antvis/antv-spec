@@ -13,10 +13,11 @@
     "build"
   ],
   "scripts": {
-    "format": "prettier --write \"src/**/*.ts\" \"__tests__/**/*.ts\"",
-    "format-check": " prettier ./src/**/*.ts ./__tests__/**/*.ts --check",
-    "lint": "eslint ./src/**/*.ts ./__tests__/**/*.ts && npm run format-check",
-    "fix": "eslint ./src/**/*.ts ./__tests__/**/*.ts --fix && npm run format",
+    "prepare": "husky install",
+    "format": "prettier --write \"src/**/*.ts\" \"__tests__/**/*.ts\" \"demo/**/*.{ts,tsx}\"",
+    "format-check": " prettier ./src/**/*.ts ./__tests__/**/*.ts ./demo/**/*.{ts,tsx} --check",
+    "lint": "eslint ./src/**/*.ts ./__tests__/**/*.ts ./demo/**/*.{ts,tsx} && npm run format-check",
+    "fix": "eslint ./src/**/*.ts ./__tests__/**/*.ts ./demo/**/*.{ts,tsx} --fix && npm run format",
     "test": "jest",
     "size": "limit-size",
     "build:umd": "rimraf ./dist && rollup -c && npm run size",
@@ -27,7 +28,11 @@
     "schema": "mkdir -p build && ts-json-schema-generator -f tsconfig.json -p src/index.ts -t AntVSpec --no-type-check --no-ref-encode > build/antv-spec.json",
     "ci": "run-s lint test build",
     "prepare:demo": "cd demo && npm install",
-    "start:demo": "npm run prepare:demo && cd demo && npm start"
+    "start:demo": "npm run prepare:demo && cd demo && npm start",
+    "prepublishOnly": "npm run ci",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
@@ -38,12 +43,17 @@
     "url": "https://antv.vision/"
   },
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "bugs": {
     "url": "https://github.com/antvis/antv-spec/issues"
   },
   "homepage": "https://github.com/antvis/antv-spec#readme",
   "devDependencies": {
     "@babel/runtime": "^7.14.6",
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
     "@rollup/plugin-node-resolve": "^13.0.1",
     "@rollup/plugin-typescript": "^8.2.3",
     "@types/jest": "^26.0.24",
@@ -57,9 +67,11 @@
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
+    "husky": "^7.0.1",
     "jest": "^27.0.6",
     "jest-json-schema": "^5.0.0",
     "limit-size": "^0.1.4",
+    "lint-staged": "^11.0.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.3.2",
     "rimraf": "^3.0.2",
@@ -68,5 +80,23 @@
     "ts-jest": "^27.0.3",
     "ts-json-schema-generator": "^0.94.1",
     "typescript": "^4.3.5"
-  }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "limit-size": [
+    {
+      "path": "dist/index.min.js",
+      "limit": "8 Kb",
+      "gzip": true
+    },
+    {
+      "path": "dist/index.min.js",
+      "limit": "24 Kb"
+    }
+  ]
 }
