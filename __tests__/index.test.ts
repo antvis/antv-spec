@@ -1,7 +1,14 @@
-import { version } from '../src/index';
+import { matchersWithOptions } from 'jest-json-schema';
+import antvSpec from '../build/antv-spec.json';
 
-describe('init test', () => {
-  test('get version right', () => {
-    expect(version).toBe('0.1.0');
+expect.extend(
+  matchersWithOptions({
+    schemas: [antvSpec],
+  })
+);
+
+describe('schema test', () => {
+  test('schema itself should be valid', () => {
+    expect(antvSpec).toBeValidSchema();
   });
 });
