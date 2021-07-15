@@ -1,0 +1,22 @@
+{
+  "name": "@antv/antv-spec",
+  "version": "0.1.0",
+  "description": "A declarative grammar that supports various technology stacks of AntV.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antvis/antv-spec.git"
+  },
+  "author": {
+    "name": "AntV",
+    "url": "https://antv.vision/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/antvis/antv-spec/issues"
+  },
+  "homepage": "https://github.com/antvis/antv-spec#readme"
+}
