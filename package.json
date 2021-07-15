@@ -25,7 +25,9 @@
     "build": "run-p build:*",
     "clean": "rimraf lib esm dist",
     "schema": "mkdir -p build && ts-json-schema-generator -f tsconfig.json -p src/index.ts -t AntVSpec --no-type-check --no-ref-encode > build/antv-spec.json",
-    "ci": "run-s lint test build"
+    "ci": "run-s lint test build",
+    "prepare:demo": "cd demo && npm install",
+    "start:demo": "npm run prepare:demo && cd demo && npm start"
   },
   "repository": {
     "type": "git",
@@ -41,6 +43,7 @@
   },
   "homepage": "https://github.com/antvis/antv-spec#readme",
   "devDependencies": {
+    "@babel/runtime": "^7.14.6",
     "@rollup/plugin-node-resolve": "^13.0.1",
     "@rollup/plugin-typescript": "^8.2.3",
     "@types/jest": "^26.0.24",
