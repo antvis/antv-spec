@@ -18,6 +18,7 @@
     "format-check": " prettier ./src/**/*.ts ./__tests__/**/*.ts ./demo/**/*.{ts,tsx} --check",
     "lint": "eslint ./src/**/*.ts ./__tests__/**/*.ts ./demo/**/*.{ts,tsx} && npm run format-check",
     "fix": "eslint ./src/**/*.ts ./__tests__/**/*.ts ./demo/**/*.{ts,tsx} --fix && npm run format",
+    "lint-staged": "lint-staged",
     "size": "limit-size",
     "build:umd": "rimraf ./dist && rollup -c && npm run size",
     "build:cjs": "rimraf ./lib && tsc --module commonjs --outDir lib",
