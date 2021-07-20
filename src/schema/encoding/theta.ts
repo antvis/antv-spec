@@ -1,8 +1,6 @@
-import { Axis } from './axis';
 import { EType } from './type';
 
-export interface Y {
+export interface Theta {
   field: string;
   type: EType;
-  axis?: Axis;
 }
