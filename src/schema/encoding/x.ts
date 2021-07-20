@@ -1,5 +1,8 @@
+import { Axis } from './axis';
+import { EType } from './type';
+
 export interface X {
   field: string;
-  type: string;
-  axis?: any;
+  type: EType;
+  axis?: Axis;
 }
