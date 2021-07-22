@@ -6,6 +6,7 @@ import { Component } from './component';
 import { Interaction } from './interaction';
 
 export interface AntVSpec {
+  $schema?: any;
   basis?: Basis;
   data: Data;
   mark: Mark;
