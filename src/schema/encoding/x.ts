@@ -6,3 +6,5 @@ export interface X {
   type: EType;
   axis?: Axis;
 }
+
+export * from './axis';

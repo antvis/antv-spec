@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 const devConfig = {
   mode: 'development',
@@ -79,6 +80,10 @@ const devConfig = {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development',
     }),
+    new MonacoWebpackPlugin({
+      // available options are documented at https://github.com/Microsoft/monaco-editor-webpack-plugin#options
+      languages: ['json']
+    })
   ],
 };
 

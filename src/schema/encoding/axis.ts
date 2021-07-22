@@ -26,4 +26,30 @@ export interface Axis {
   // label of the axis
   label?: AxisLabelConfig;
   // TODO: grid
+
+  // min of the axis
+  min?: number;
+  // max of the axis
+  max?: number;
+  // interval of the ticks in the axis
+  tickInterval?: number;
 }
+
+export const AxisProps = ['top', 'position', 'title', 'label', 'min', 'max', 'tickInterval'] as const;
+export const AxisTitleProps = ['text', 'position'] as const;
+export const AxisLabelProps = ['offset', 'angle', 'autoRotate', 'autoHide', 'autoEllipsis', 'formatter'] as const;
+
+/**
+ * @public
+ */
+// export type AxisProps = typeof AXIS_PROPS[number];
+
+// /**
+//  * @public
+//  */
+// export type AxisTitleProps = typeof AXIS_TITLE_PROPS[number];
+
+//  /**
+//  * @public
+//  */
+// export type AxisLabelProps = typeof AXIS_LABEL_PROPS[number];
