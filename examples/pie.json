@@ -13,9 +13,13 @@
       {"category": 6, "value": 8}
     ]
   },
-  "mark": "pie",
-  "encoding": {
-    "theta": {"field": "value", "type": "quantitative"},
-    "color": {"field": "category", "type": "nominal"}
-  }
+  "layer": [
+    {
+      "mark": "arc",
+      "encoding": {
+        "theta": {"field": "value", "type": "quantitative"},
+        "color": {"field": "category", "type": "nominal"}
+      }
+    }
+  ]
 }

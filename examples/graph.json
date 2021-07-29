@@ -1,9 +1,5 @@
 {
-  "basis": {
-    "type": "graph",
-    "width": 500,
-    "height": 500
-  },
+  "$schema": "https://gw.alipayobjects.com/os/antfincdn/BR8myY18Yf/antv-spec.json",
   "data": {
     "type": "json",
     "values": {
@@ -11,13 +7,19 @@
         {
           "id": "node1",
           "label": "node1",
-          "size": 12,
+          "cost": 60,
           "type": "A"
         },
         {
           "id": "node2",
           "label": "node2",
-          "size": 5,
+          "cost": 25,
+          "type": "B"
+        },
+        {
+          "id": "node3",
+          "label": "node3",
+          "cost": 25,
           "type": "B"
         }
       ],
@@ -25,7 +27,14 @@
         {
           "source": "node1",
           "target": "node2",
-          "size": 20
+          "weight": 5,
+          "type": "X"
+        },
+        {
+          "source": "node2",
+          "target": "node3",
+          "weight": 10,
+          "type": "Y"
         }
       ]
     }
@@ -40,7 +49,7 @@
       "mark": "node",
       "encoding": {
         "size": {
-          "field": "size",
+          "field": "cost",
           "type": "quantitative"
         },
         "color": {
@@ -53,7 +62,7 @@
       "mark": "link",
       "encoding": {
         "size": {
-          "field": "size",
+          "field": "weight",
           "type": "quantitative"
         }
       }

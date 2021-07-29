@@ -1,4 +1,5 @@
 {
+  "$schema": "https://gw.alipayobjects.com/os/antfincdn/QzRW0f%24i8z/antv-spec.json",
   "basis": {
     "type": "chart",
     "width": 500,
@@ -12,17 +13,21 @@
       {"a": "G", "b": 19}, {"a": "H", "b": 87}, {"a": "I", "b": 52}
     ]
   },
-  "mark": {
-    "type": "bar"
-  },
-  "encoding": {
-    "x": {
-      "field": "a",
-      "type": "nominal"
-    },
-    "y": {
-      "field": "b",
-      "type": "quantitative"
+  "layer": [
+    {
+      "mark": {
+        "type": "bar"
+      },
+      "encoding": {
+        "x": {
+          "field": "a",
+          "type": "nominal"
+        },
+        "y": {
+          "field": "b",
+          "type": "quantitative"
+        }
+      }
     }
-  }
+  ]
 }
