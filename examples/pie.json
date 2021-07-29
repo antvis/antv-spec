@@ -1,4 +1,7 @@
 {
+  "basis": {
+    "type": "chart"
+  },
   "data": {
     "type": "json-array",
     "values": [
