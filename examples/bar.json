@@ -1,5 +1,6 @@
 {
   "basis": {
+    "type": "chart",
     "width": 500,
     "height": 500
   },

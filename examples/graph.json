@@ -1,6 +1,6 @@
 {
-  "$schema": "https://gw.alipayobjects.com/os/antfincdn/%26X%24RB9DXjw/antv-spec.json",
   "basis": {
+    "type": "graph",
     "width": 500,
     "height": 500
   },
