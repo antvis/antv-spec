@@ -14,6 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "@antv/g2plot": "^2.3.27",
+    "@antv/g6": "^4.3.4",
     "ajv": "^8.6.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

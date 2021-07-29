@@ -3,8 +3,11 @@ import Ajv from 'ajv';
 import MonacoEditor from 'react-monaco-editor';
 import { AntVSpec } from '../../src';
 import specSchema from '../../build/antv-spec.json';
-import testDemo from '../../examples/bar.json';
-import { specToG2Plot, g2plotRender } from './adaptor';
+import testDemo from '../../examples/graph.json';
+import { specToG2Plot } from './adaptor/spec-g2plot';
+import { specToG6 } from './adaptor/spec-g6';
+import { g2plotRender } from './render/g2plotRender';
+import { g6Render } from './render/g6Render';
 
 const ajv = new Ajv();
 const validateSchema = ajv.compile(specSchema);
@@ -16,7 +19,7 @@ function editorWillMount(monaco: any) {
     schemas: [
       {
         schema: specSchema,
-        uri: 'https://gw.alipayobjects.com/os/antfincdn/bTUpx6VdQK/antv-spec.json',
+        uri: 'https://gw.alipayobjects.com/os/antfincdn/BR8myY18Yf/antv-spec.json',
       },
     ],
   });
@@ -34,18 +37,46 @@ export default function App() {
 
   useEffect(() => {
     if (validateSchema(spec)) {
-      const g2plotCfg = specToG2Plot(spec as AntVSpec);
-      // @ts-ignore
-      if (chart.current && spec && g2plotCfg.chartType && chart.current.type === g2plotCfg.chartType.toLowerCase()) {
+      // check visualization type
+      let visType;
+      if ('layout' in spec) {
+        visType = 'graph';
+      } else if (spec.layer.length === 1) {
+        visType = 'chart';
+      } else if ('basis' in spec) {
+        const specType = (spec as AntVSpec).basis?.type;
+        if (specType) {
+          visType = specType;
+        }
+      }
+      if (!visType) {
+        visType = 'chart';
+      }
+
+      if (visType === 'chart') {
+        const g2plotCfg = specToG2Plot(spec as AntVSpec);
         // @ts-ignore
-        chart.current.update(g2plotCfg.config);
-      } else {
+        if (chart.current && spec && g2plotCfg.chartType && chart.current.type === g2plotCfg.chartType.toLowerCase()) {
+          // @ts-ignore
+          chart.current.update(g2plotCfg.config);
+        } else {
+          if (chart.current) {
+            // @ts-ignore
+            chart.current.destroy();
+          }
+          // @ts-ignore
+          const plot = g2plotRender(canvas.current, g2plotCfg);
+          // @ts-ignore
+          chart.current = plot;
+        }
+      } else if (visType === 'graph') {
+        const g6Cfg = specToG6(spec as AntVSpec);
         if (chart.current) {
           // @ts-ignore
           chart.current.destroy();
         }
         // @ts-ignore
-        const plot = g2plotRender(canvas.current, g2plotCfg);
+        const plot = g6Render(canvas.current, g6Cfg);
         // @ts-ignore
         chart.current = plot;
       }
