@@ -5,7 +5,7 @@ export type Mark =
       style?: MarkStyleConfig;
     };
 
-export type MarkType = 'bar' | 'line' | 'arc' | 'area' | 'point';
+export type MarkType = 'bar' | 'line' | 'arc' | 'area' | 'point' | 'node' | 'link';
 
 interface MarkStyleConfig {
   type: MarkType;

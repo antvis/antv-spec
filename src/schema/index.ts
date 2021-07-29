@@ -1,16 +1,16 @@
 import { Data } from './data';
-import { Mark } from './mark';
-import { Encoding } from './encoding';
 import { Basis } from './basis';
 import { Component } from './component';
 import { Interaction } from './interaction';
+import { Layout } from './layout';
+import { Layer } from './layer';
 
 export interface AntVSpec {
   $schema?: any;
   basis?: Basis;
   data: Data;
-  mark: Mark;
-  encoding: Encoding;
+  layout?: Layout;
+  layer: Layer[];
   component?: Component;
   interactions?: Interaction[];
 }
