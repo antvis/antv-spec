@@ -1,0 +1,62 @@
+{
+  "$schema": "https://gw.alipayobjects.com/os/antfincdn/%26X%24RB9DXjw/antv-spec.json",
+  "basis": {
+    "width": 500,
+    "height": 500
+  },
+  "data": {
+    "type": "json",
+    "values": {
+      "persons": [
+        {
+          "id": "node1",
+          "label": "node1",
+          "size": 12,
+          "type": "A"
+        },
+        {
+          "id": "node2",
+          "label": "node2",
+          "size": 5,
+          "type": "B"
+        }
+      ],
+      "relation": [
+        {
+          "source": "node1",
+          "target": "node2",
+          "size": 20
+        }
+      ]
+    }
+  },
+  "layout": {
+    "type": "force",
+    "nodes": "persons",
+    "links": "relation"
+  },
+  "layer": [
+    {
+      "mark": "node",
+      "encoding": {
+        "size": {
+          "field": "size",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "type",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "mark": "link",
+      "encoding": {
+        "size": {
+          "field": "size",
+          "type": "quantitative"
+        }
+      }
+    }
+  ]
+}
