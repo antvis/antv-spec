@@ -12,6 +12,19 @@ export interface Encoding {
   size?: Size;
 }
 
+export type GraphEncoding = {
+  size?: Size;
+  color?: Color;
+};
+
+export type ChartEncoding = {
+  x?: X;
+  y?: Y;
+  color?: Color;
+  theta?: Theta;
+  size?: Size;
+};
+
 export * from './x';
 export * from './y';
 export * from './color';
