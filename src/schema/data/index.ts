@@ -1,15 +1,54 @@
 import { DataRow } from './dataRow';
 import { GraphData } from './graphData';
 
-export interface Data {
-  type?: 'json-array' | 'json' | 'url'; // inline array or external url
-  values: DataRow[] | string | GraphData; // array or url
-  format?: 'csv' | 'json'; // csv / json for parsing
-  config?: DataConfig; // config for parsing
-}
+export type Data = GraphInlineData | GraphOnlineData | ChartInlineData | ChartOnlineData;
+
+export type ChartDataDef = ChartInlineData | ChartOnlineData;
+export type GraphDataDef = GraphInlineData | GraphOnlineData;
 
 type DataConfig = {
   delimiter?: string;
+};
+
+export type GraphInlineData = {
+  /**
+   * type of `values`
+   */
+  type?: 'json';
+  values: GraphData;
+};
+
+export type GraphOnlineData = {
+  type?: 'url';
+  /**
+   * URL of the data source.
+   */
+  values: string;
+  /**
+   * type of the data, for correctly parsing
+   */
+  format?: 'json';
+};
+
+export type ChartInlineData = {
+  type?: 'json-array';
+  values: DataRow[];
+};
+
+export type ChartOnlineData = {
+  type?: 'url';
+  /**
+   * URL of the data source.
+   */
+  values: string;
+  /**
+   * type of the data, for correctly parsing
+   */
+  format?: 'csv' | 'json';
+  /**
+   * config for parsing data
+   */
+  config?: DataConfig;
 };
 
 export { DataRow };
