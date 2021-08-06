@@ -41,7 +41,7 @@ export function specToG6(spec: AntVSpec) {
     }
   }
 
-  if (spec.layout) {
+  if ('layout' in spec) {
     const layoutCfg: Record<string, any> = {};
     if (spec.layout?.type) {
       layoutCfg.type = spec.layout.type;
@@ -52,8 +52,8 @@ export function specToG6(spec: AntVSpec) {
   // convert data to { "nodes": [{...}, ], "links": [{...}, ]}
   const dataVals = spec.data.values;
   // nodes
-  const nodesField = spec.layout?.nodes;
-  const linksField = spec.layout?.links;
+  const nodesField = 'layout' in spec ? spec.layout?.nodes : null;
+  const linksField = 'layout' in spec ? spec.layout?.links : null;
   if (
     !nodesField ||
     !linksField ||
@@ -78,11 +78,11 @@ export function specToG6(spec: AntVSpec) {
     updateNode.oriLabel = updateNode.label;
     return updateNode;
   });
-  const nodesEnc = spec.layer.filter((layer) => layer.mark === 'node');
-  if (nodesEnc && nodesEnc?.length) {
-    if (nodesEnc[0].encoding.color) {
+  const nodesEnc = 'nodes' in spec.layer[0] ? spec.layer[0].nodes : null;
+  if (nodesEnc) {
+    if (nodesEnc.encoding.color) {
       // have color encoding for nodes
-      const colorField = nodesEnc[0].encoding.color.field;
+      const colorField = nodesEnc.encoding.color.field;
       const clusterMap = new Map();
       let clusterId = 0;
       nodes.forEach((node: any) => {
@@ -99,11 +99,11 @@ export function specToG6(spec: AntVSpec) {
         return updateNode;
       });
     }
-    if (nodesEnc[0].encoding.size) {
+    if (nodesEnc.encoding.size) {
       // have size encoding for nodes
-      if (nodesEnc[0].encoding.size.field !== 'size') {
+      if (nodesEnc.encoding.size.field !== 'size') {
         // if size field not 'size', should add 'size' in data.nodes
-        const sizeField = nodesEnc[0].encoding.size.field;
+        const sizeField = nodesEnc.encoding.size.field;
         nodes.forEach((node: any) => {
           const updateNode = node;
           updateNode.size = updateNode[sizeField];
@@ -114,11 +114,11 @@ export function specToG6(spec: AntVSpec) {
   }
 
   const { edges } = g6Data;
-  const edgesEnc = spec.layer.filter((layer) => layer.mark === 'link');
-  if (edgesEnc && edgesEnc.length) {
-    if (edgesEnc[0].encoding.color) {
+  const edgesEnc = 'links' in spec.layer[0] ? spec.layer[0].links : null;
+  if (edgesEnc) {
+    if (edgesEnc.encoding.color) {
       // have color encoding for edges
-      const colorField = edgesEnc[0].encoding.color.field;
+      const colorField = edgesEnc.encoding.color.field;
       const clusterMap = new Map();
       let clusterId = 0;
       edges.forEach((edge: any) => {
@@ -134,9 +134,9 @@ export function specToG6(spec: AntVSpec) {
         return updateEdge;
       });
     }
-    if (edgesEnc[0].encoding.size) {
+    if (edgesEnc.encoding.size) {
       // have size encoding for edges
-      const sizeField = edgesEnc[0].encoding.size.field;
+      const sizeField = edgesEnc.encoding.size.field;
       edges.forEach((edge: any) => {
         const updateEdge = edge;
         if (!updateEdge.style) updateEdge.style = {};

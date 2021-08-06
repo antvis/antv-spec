@@ -2,12 +2,12 @@ export type Basis = ChartBasis | GraphBasis;
 
 export type ChartBasis = GenericBasis & {
   /** indicate what kind of visualization this spec is about */
-  type?: 'chart';
+  type: 'chart';
 };
 
 export type GraphBasis = GenericBasis & {
   /** indicate what kind of visualization this spec is about */
-  type?: 'graph';
+  type: 'graph';
 };
 
 interface GenericBasis {

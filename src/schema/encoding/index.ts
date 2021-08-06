@@ -12,7 +12,13 @@ export interface Encoding {
   size?: Size;
 }
 
-export type GraphEncoding = {
+export type NodeEncoding = {
+  size?: Size;
+  color?: Color;
+  theta?: Theta;
+};
+
+export type LinkEncoding = {
   size?: Size;
   color?: Color;
 };

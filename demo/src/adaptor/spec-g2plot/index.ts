@@ -66,7 +66,7 @@ export function specToG2Plot(spec: AntVSpec) {
   }
 
   // convert encoding
-  if (spec.layer.length === 1) {
+  if (spec.layer.length === 1 && 'encoding' in spec.layer[0]) {
     const layer = spec.layer[0];
     Object.keys(layer.encoding).forEach((key) => {
       if (key === 'x' || key === 'y') {

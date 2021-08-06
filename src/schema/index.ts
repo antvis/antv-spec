@@ -5,7 +5,9 @@ import { Interaction } from './interaction';
 import { Layout } from './layout';
 import { GraphLayer, ChartLayer } from './layer';
 
-export type AntVSpec = CommonAntVSpec & (ChartAntVSpec | GraphAntVSpec);
+export type AntVSpec = CommonAntVSpec & (ChartAntVSpecDef | GraphAntVSpecDef);
+export type ChartAntVSpec = CommonAntVSpec & ChartAntVSpecDef;
+export type GraphAntVSpec = CommonAntVSpec & GraphAntVSpecDef;
 
 type CommonAntVSpec = {
   /**
@@ -18,14 +20,14 @@ type CommonAntVSpec = {
   component?: Component;
   interactions?: Interaction[];
 };
-type ChartAntVSpec = {
-  basis?: ChartBasis;
+type ChartAntVSpecDef = {
+  basis: ChartBasis;
   data: ChartDataDef;
   layer: ChartLayer[];
 };
 
-type GraphAntVSpec = {
-  basis?: GraphBasis;
+type GraphAntVSpecDef = {
+  basis: GraphBasis;
   data: GraphDataDef;
   layout: Layout;
   layer: GraphLayer[];
