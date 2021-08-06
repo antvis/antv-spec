@@ -16,12 +16,22 @@ export type ChartMarkDef =
     };
 
 /**
- * Mark definition for `Graph` type visualization
+ * Mark definition for node of `Graph` type visualization
  */
-export type GraphMarkDef =
-  | GraphMarkType
+export type NodeMarkDef =
+  | NodeMarkType
   | {
-      type: GraphMarkType;
+      type: NodeMarkType;
+      style?: MarkStyleConfig;
+    };
+
+/**
+ * Mark definition for link of `Graph` type visualization
+ */
+export type LinkMarkDef =
+  | LinkMarkType
+  | {
+      type: LinkMarkType;
       style?: MarkStyleConfig;
     };
 
@@ -30,7 +40,9 @@ export type GraphMarkDef =
  */
 export type MarkType = ChartMarkType | GraphMarkType;
 export type ChartMarkType = 'bar' | 'line' | 'arc' | 'area' | 'point';
-export type GraphMarkType = 'node' | 'link';
+export type GraphMarkType = NodeMarkType & LinkMarkType;
+export type NodeMarkType = 'point' | 'arc' | 'rect';
+export type LinkMarkType = 'line';
 
 /**
  * Mark style configuration

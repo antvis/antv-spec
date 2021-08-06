@@ -1,5 +1,7 @@
 {
-  "$schema": "https://gw.alipayobjects.com/os/antfincdn/Jin4BAIL5G/antv-spec.json",
+  "basis": {
+    "type": "graph"
+  },
   "data": {
     "type": "json",
     "values": {
@@ -46,24 +48,26 @@
   },
   "layer": [
     {
-      "mark": "node",
-      "encoding": {
-        "size": {
-          "field": "cost",
-          "type": "quantitative"
-        },
-        "color": {
-          "field": "type",
-          "type": "nominal"
+      "nodes": {
+        "mark": "point",
+        "encoding": {
+          "size": {
+            "field": "cost",
+            "type": "quantitative"
+          },
+          "color": {
+            "field": "type",
+            "type": "nominal"
+          }
         }
-      }
-    },
-    {
-      "mark": "link",
-      "encoding": {
-        "size": {
-          "field": "weight",
-          "type": "quantitative"
+      },
+      "links": {
+        "mark": "line",
+        "encoding": {
+          "size": {
+            "field": "weight",
+            "type": "quantitative"
+          }
         }
       }
     }

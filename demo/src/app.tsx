@@ -19,7 +19,7 @@ function editorWillMount(monaco: any) {
     schemas: [
       {
         schema: specSchema,
-        uri: 'https://gw.alipayobjects.com/os/antfincdn/BR8myY18Yf/antv-spec.json',
+        uri: 'https://gw.alipayobjects.com/os/antfincdn/WGPnH2dl9L/antv-spec.json',
       },
     ],
   });
@@ -39,20 +39,11 @@ export default function App() {
     if (validateSchema(spec)) {
       // check visualization type
       let visType;
-      if ('layout' in spec) {
+      if (spec.basis.type === 'graph') {
         visType = 'graph';
-      } else if (spec.layer.length === 1) {
-        visType = 'chart';
-      } else if ('basis' in spec) {
-        const specType = (spec as AntVSpec).basis?.type;
-        if (specType) {
-          visType = specType;
-        }
-      }
-      if (!visType) {
+      } else {
         visType = 'chart';
       }
-
       if (visType === 'chart') {
         const g2plotCfg = specToG2Plot(spec as AntVSpec);
         // @ts-ignore
