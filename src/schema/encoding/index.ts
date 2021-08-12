@@ -3,6 +3,8 @@ import { Y } from './y';
 import { Color } from './color';
 import { Theta } from './theta';
 import { Size } from './size';
+import { Column } from './column';
+import { Row } from './row';
 
 export interface Encoding {
   x?: X;
@@ -29,10 +31,13 @@ export type ChartEncoding = {
   color?: Color;
   theta?: Theta;
   size?: Size;
+  column?: Column;
+  row?: Row;
 };
-
 export * from './x';
 export * from './y';
 export * from './color';
 export * from './theta';
 export * from './size';
+export * from './row';
+export * from './column';

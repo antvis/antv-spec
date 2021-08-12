@@ -12,6 +12,11 @@ export type ChartMarkDef =
   | ChartMarkType
   | {
       type: ChartMarkType;
+      /**
+       * for `line` and `area` only
+       * TODO: 'step' is used in AVA but more interpolate type can be defined
+       */
+      interpolate?: 'step';
       style?: MarkStyleConfig;
     };
 
@@ -48,7 +53,6 @@ export type LinkMarkType = 'line';
  * Mark style configuration
  */
 interface MarkStyleConfig {
-  type: MarkType;
   size?: number;
   lineWidth?: number;
   strokeWidth?: number;
