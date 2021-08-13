@@ -6,14 +6,6 @@ import { Size } from './size';
 import { Column } from './column';
 import { Row } from './row';
 
-export interface Encoding {
-  x?: X;
-  y?: Y;
-  color?: Color;
-  theta?: Theta;
-  size?: Size;
-}
-
 export type NodeEncoding = {
   size?: Size;
   color?: Color;
@@ -34,6 +26,10 @@ export type ChartEncoding = {
   column?: Column;
   row?: Row;
 };
+
+export const CHART_CHANNELS = ['x', 'y', 'color', 'theta', 'size', 'column', 'row'];
+export const GRAPH_CHANNELS = ['size', 'color', 'theta'];
+
 export * from './x';
 export * from './y';
 export * from './color';

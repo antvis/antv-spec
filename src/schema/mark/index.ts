@@ -44,10 +44,13 @@ export type LinkMarkDef =
  * Mark type supported by antv-spec
  */
 export type MarkType = ChartMarkType | GraphMarkType;
-export type ChartMarkType = 'bar' | 'line' | 'arc' | 'area' | 'point';
+export const CHART_MARK_TYPE = ['bar', 'line', 'arc', 'area', 'point'] as const;
+export type ChartMarkType = typeof CHART_MARK_TYPE[number];
 export type GraphMarkType = NodeMarkType & LinkMarkType;
-export type NodeMarkType = 'point' | 'arc' | 'rect';
-export type LinkMarkType = 'line';
+export const NODE_MARK_TYPE = ['point', 'arc', 'rect'];
+export type NodeMarkType = typeof NODE_MARK_TYPE[number];
+export const LINK_MARK_TYPE = ['line'];
+export type LinkMarkType = typeof LINK_MARK_TYPE[number];
 
 /**
  * Mark style configuration
