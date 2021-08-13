@@ -1,10 +1,5 @@
-import { Mark, ChartMarkDef, NodeMarkDef, LinkMarkDef } from '../mark';
-import { Encoding, ChartEncoding, NodeEncoding, LinkEncoding } from '../encoding';
-
-export interface Layer {
-  mark: Mark;
-  encoding: Encoding;
-}
+import { ChartMarkDef, NodeMarkDef, LinkMarkDef } from '../mark';
+import { ChartEncoding, NodeEncoding, LinkEncoding } from '../encoding';
 
 export type ChartLayer = {
   mark: ChartMarkDef;
