@@ -19,11 +19,11 @@
         "type": "bar"
       },
       "encoding": {
-        "y": {
+        "x": {
           "field": "a",
           "type": "nominal"
         },
-        "x": {
+        "y": {
           "field": "b",
           "type": "quantitative"
         }

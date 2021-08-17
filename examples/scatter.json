@@ -1,0 +1,39 @@
+{
+  "$schema": "https://gw.alipayobjects.com/os/antfincdn/YsVcObYeV9/antv-spec.json",
+  "basis": {
+    "type": "chart"
+  },
+  "data": {
+    "type": "json-array",
+    "values": [
+      { "sales": 28, "volume": 183, "type": "A" },
+      { "sales": 55, "volume": 12, "type": "A" },
+      { "sales": 43, "volume": 234, "type": "A" },
+      { "sales": 91, "volume": 321, "type": "A" },
+      { "sales": 81, "volume": 56, "type": "B" },
+      { "sales": 53, "volume": 20, "type": "B" },
+      { "sales": 19, "volume": 508, "type": "B" },
+      { "sales": 87, "volume": 276, "type": "B" },
+      { "sales": 52, "volume": 11, "type": "B" }
+    ]
+  },
+  "layer": [
+    {
+      "mark": "point",
+      "encoding": {
+        "x": {
+          "field": "volume",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "sales",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "type",
+          "type": "nominal"
+        }
+      }
+    }
+  ]
+}

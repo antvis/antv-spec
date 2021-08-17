@@ -1,0 +1,25 @@
+{
+  "basis": {
+    "type": "chart"
+  },
+  "data": {
+    "type": "json-array",
+    "values": [
+      {"category": "A", "value": 4},
+      {"category": "B", "value": 6},
+      {"category": "C", "value": 10},
+      {"category": "D", "value": 3},
+      {"category": "E", "value": 7},
+      {"category": "F", "value": 8}
+    ]
+  },
+  "layer": [
+    {
+      "mark": { "type": "arc", "style": { "innerRadius": 10}},
+      "encoding": {
+        "theta": {"field": "value", "type": "quantitative"},
+        "color": {"field": "category", "type": "nominal"}
+      }
+    }
+  ]
+}
