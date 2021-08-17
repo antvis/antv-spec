@@ -1,0 +1,142 @@
+{
+  "$schema": "https://gw.alipayobjects.com/os/antfincdn/YowJmG0%26V1/antv-spec.json",
+  "basis": {
+    "type": "chart"
+  },
+  "data": {
+    "type": "json-array",
+    "values": [
+      {
+        "product_type": "Office Supplies",
+        "sex": "Male",
+        "order_amt": 8,
+        "product_sub_type": "Eraser"
+      },
+      {
+        "product_type": "Office Supplies",
+        "sex": "Male",
+        "order_amt": 10,
+        "product_sub_type": "Bookcase"
+      },
+      {
+        "product_type": "Office Supplies",
+        "sex": "Male",
+        "order_amt": 20,
+        "product_sub_type": "Inkstone"
+      },
+      {
+        "product_type": "Office Supplies",
+        "sex": "Female",
+        "order_amt": 13,
+        "product_sub_type": "Inkstone"
+      },
+      {
+        "product_type": "Office Supplies",
+        "sex": "Female",
+        "order_amt": 21,
+        "product_sub_type": "Eraser"
+      },
+      {
+        "product_type": "Office Supplies",
+        "sex": "Female",
+        "order_amt": 21,
+        "product_sub_type": "Bookcase"
+      },
+
+      {
+        "product_type": "Home Appliance",
+        "sex": "Male",
+        "order_amt": 13,
+        "product_sub_type": "Washing machine"
+      },
+      {
+        "product_type": "Home Appliance",
+        "sex": "Female",
+        "order_amt": 2,
+        "product_sub_type": "Washing machine"
+      },
+      {
+        "product_type": "Home Appliance",
+        "sex": "Male",
+        "order_amt": 5,
+        "product_sub_type": "Microwaves"
+      },
+      {
+        "product_type": "Home Appliance",
+        "sex": "Male",
+        "order_amt": 14,
+        "product_sub_type": "Induction Cooker"
+      },
+      {
+        "product_type": "Home Appliance",
+        "sex": "Female",
+        "order_amt": 23,
+        "product_sub_type": "Microwaves"
+      },
+      {
+        "product_type": "Home Appliance",
+        "sex": "Female",
+        "order_amt": 23,
+        "product_sub_type": "Induction Cooker"
+      },
+
+      {
+        "product_type": "Electronics",
+        "sex": "Male",
+        "order_amt": 33,
+        "product_sub_type": "Computer"
+      },
+      {
+        "product_type": "Electronics",
+        "sex": "Female",
+        "order_amt": 4,
+        "product_sub_type": "Computer"
+      },
+      {
+        "product_type": "Electronics",
+        "sex": "Female",
+        "order_amt": 23,
+        "product_sub_type": "switch"
+      },
+      {
+        "product_type": "Electronics",
+        "sex": "Male",
+        "order_amt": 20.9,
+        "product_sub_type": "switch"
+      },
+      {
+        "product_type": "Electronics",
+        "sex": "Male",
+        "order_amt": 5.9,
+        "product_sub_type": "Mouse"
+      },
+      {
+        "product_type": "Electronics",
+        "sex": "Female",
+        "order_amt": 5.9,
+        "product_sub_type": "Mouse"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": "bar",
+      "encoding": {
+        "y": {
+          "field": "product_type",
+          "type": "nominal"
+        },
+        "color": {
+          "field": "sex",
+          "type": "nominal"
+        },
+        "x": {
+          "field": "order_amt",
+          "type": "quantitative",
+          "aggregate": "sum",
+          "stack": "normalize"
+        }
+      }
+    }
+  ]
+}

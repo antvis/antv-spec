@@ -3,7 +3,7 @@ import Ajv from 'ajv';
 import MonacoEditor from 'react-monaco-editor';
 import { AntVSpec } from '../../src';
 import specSchema from '../../build/antv-spec.json';
-import testDemo from '../../examples/graph.json';
+import testDemo from '../../examples/heatmap.json';
 import { specToG2Plot } from './adaptor/spec-g2plot';
 import { specToG6 } from './adaptor/spec-g6';
 import { g2plotRender } from './render/g2plotRender';

@@ -44,7 +44,7 @@ export type LinkMarkDef =
  * Mark type supported by antv-spec
  */
 export type MarkType = ChartMarkType | GraphMarkType;
-export const CHART_MARK_TYPE = ['bar', 'line', 'arc', 'area', 'point'] as const;
+export const CHART_MARK_TYPE = ['bar', 'line', 'arc', 'area', 'point', 'rect'] as const;
 export type ChartMarkType = typeof CHART_MARK_TYPE[number];
 export type GraphMarkType = NodeMarkType & LinkMarkType;
 export const NODE_MARK_TYPE = ['point', 'arc', 'rect'];
