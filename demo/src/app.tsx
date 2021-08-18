@@ -3,7 +3,7 @@ import Ajv from 'ajv';
 import MonacoEditor from 'react-monaco-editor';
 import { AntVSpec } from '../../src';
 import specSchema from '../../build/antv-spec.json';
-import testDemo from '../../examples/heatmap.json';
+import demos from '../../examples';
 import { specToG2Plot } from './adaptor/spec-g2plot';
 import { specToG6 } from './adaptor/spec-g6';
 import { g2plotRender } from './render/g2plotRender';
@@ -29,7 +29,7 @@ export default function App() {
   const canvas = useRef(null);
   const chart = useRef(null);
 
-  const [spec, setSpec] = useState(testDemo);
+  const [spec, setSpec] = useState(demos.areaDemo);
 
   function editorChange(newSpec: any) {
     setSpec(JSON.parse(newSpec));

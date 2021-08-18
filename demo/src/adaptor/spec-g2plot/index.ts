@@ -2,7 +2,7 @@ import { AntVSpec, AxisLabelProps, AxisProps, AxisTitleProps } from '../../../..
 
 export type G2PlotType = 'Line' | 'Area' | 'Column' | 'Bar' | 'Pie' | 'Rose' | 'Scatter' | 'Histogram' | 'Heatmap';
 
-const CHART_TYPE_WITH_STACK = ['Area', 'Column', 'Bar'];
+const CHART_TYPES_WITH_STACK = ['Area', 'Column', 'Bar'];
 
 export function markToChart(spec: any) {
   if (spec.layer.length === 1) {
@@ -165,7 +165,7 @@ export function specToG2Plot(spec: AntVSpec) {
       } else if (key === 'theta') {
         configs.config.angleField = layer.encoding[key]?.field;
       } else if (key === 'color') {
-        if (CHART_TYPE_WITH_STACK.includes(chartType)) {
+        if (CHART_TYPES_WITH_STACK.includes(chartType)) {
           // stacking
           configs.config.seriesField = layer.encoding[key]?.field;
           configs.config.isStack = true;
@@ -175,6 +175,6 @@ export function specToG2Plot(spec: AntVSpec) {
       }
     });
   }
-  console.log(chartType, configs);
+
   return configs;
 }
