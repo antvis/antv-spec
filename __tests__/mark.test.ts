@@ -1,15 +1,15 @@
-import { NODE_MARK_TYPE, LINK_MARK_TYPE, CHART_MARK_TYPE } from '../src/schema';
+import { NODE_MARK_TYPES, LINK_MARK_TYPES, CHART_MARK_TYPES } from '../src/schema';
 
 describe('mark test', () => {
   test('chart mark type', () => {
-    expect(CHART_MARK_TYPE).toEqual(['bar', 'line', 'arc', 'area', 'point']);
+    expect(CHART_MARK_TYPES).toEqual(['bar', 'line', 'arc', 'area', 'point', 'rect']);
   });
 
   test('node mark type in graph', () => {
-    expect(NODE_MARK_TYPE).toEqual(['point', 'arc', 'rect']);
+    expect(NODE_MARK_TYPES).toEqual(['point', 'arc', 'rect']);
   });
 
   test('link mark tyoe in graph', () => {
-    expect(LINK_MARK_TYPE).toEqual(['line']);
+    expect(LINK_MARK_TYPES).toEqual(['line']);
   });
 });
