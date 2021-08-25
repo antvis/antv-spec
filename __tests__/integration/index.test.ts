@@ -4,7 +4,7 @@ import lineSpec from '../../examples/line.json';
 import barSpec from '../../examples/bar.json';
 import pieSpec from '../../examples/pie.json';
 import graphSpec from '../../examples/graph.json';
-import groupedStackBarSpec from '../../examples/grouped_stack_bar.json';
+import groupedStackColumnSpec from '../../examples/group_stack_column.json';
 import histrogramSpec from '../../examples/histogram.json';
 
 expect.extend(
@@ -31,7 +31,7 @@ describe('spec test', () => {
   });
 
   test('grouped stack bar chart sepc should be valid', () => {
-    expect(groupedStackBarSpec).toMatchSchema(antvSpec);
+    expect(groupedStackColumnSpec).toMatchSchema(antvSpec);
   });
 
   test('histogram spec should be valid', () => {
