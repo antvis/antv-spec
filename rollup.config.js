@@ -12,5 +12,6 @@ module.exports = [
       sourcemap: false,
     },
     plugins: [resolve(), typescript(), uglify()],
+    external: ['@antv/g2-plot']
   },
 ];
