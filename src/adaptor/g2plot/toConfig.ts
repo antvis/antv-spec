@@ -172,6 +172,10 @@ export function toG2PlotConfg(spec: ChartAntVSpec) {
         } else {
           configs.config.colorField = layer.encoding[key]?.field;
         }
+        if (layer.encoding[key]?.scale && layer.encoding[key]?.scale.range) {
+          // define color
+          configs.config.color = layer.encoding[key]?.scale.range;
+        }
       }
     });
   }
