@@ -81,7 +81,7 @@
     "rollup-plugin-uglify": "^6.0.4",
     "ts-jest": "^27.0.3",
     "ts-json-schema-generator": "^0.94.1",
-    "typescript": "^4.3.5"
+    "typescript": "4.3.5"
   },
   "peerDependencies": {
     "@antv/g2plot": "^2.3.27"
