@@ -6,6 +6,7 @@ import pieSpec from '../../examples/pie.json';
 import graphSpec from '../../examples/graph.json';
 import groupedStackColumnSpec from '../../examples/group_stack_column.json';
 import histrogramSpec from '../../examples/histogram.json';
+import pieColor from '../../examples/pie_color.json';
 
 expect.extend(
   matchersWithOptions({
@@ -36,5 +37,9 @@ describe('spec test', () => {
 
   test('histogram spec should be valid', () => {
     expect(histrogramSpec).toMatchSchema(antvSpec);
+  });
+
+  test('pie spec with color scale should be valid', () => {
+    expect(pieColor).toMatchSchema(antvSpec);
   });
 });
