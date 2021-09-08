@@ -1,6 +1,7 @@
 // line
 import lineDemo from './line.json';
 import stepLineDemo from './step_line.json';
+import multiLineDemo from './multi_line.json';
 // pie
 import pieDemo from './pie.json';
 import donutDemo from './donut.json';
@@ -51,6 +52,7 @@ const demos = {
   heatmapDemo,
   histogramDemo,
   graphDemo,
+  multiLineDemo,
 };
 
 export default demos;
