@@ -4,6 +4,11 @@ export type G2PlotType = 'Line' | 'Area' | 'Column' | 'Bar' | 'Pie' | 'Rose' | '
 
 const CHART_TYPES_WITH_STACK = ['Area', 'Column', 'Bar'];
 
+/**
+ * get chart type (Line / Bar / ...) from spec's mark (bar / line / ...)
+ * @param spec input spec
+ * @returns chart type
+ */
 export function markToChart(spec: ChartAntVSpec) {
   if (spec.layer.length === 1) {
     const layer = spec.layer[0];
@@ -20,7 +25,7 @@ export function markToChart(spec: ChartAntVSpec) {
         chartType = 'Scatter';
         break;
       case 'arc':
-        // TODO
+        // pie and donut are all Pie(), with/without innerRadius
         chartType = 'Pie';
         break;
       case 'bar': {
@@ -42,47 +47,69 @@ export function markToChart(spec: ChartAntVSpec) {
     }
     return chartType;
   }
-  // TODO: dual axes and default
+  // TODO: other chart types (dual axea, etc)
   return '';
 }
 
+/**
+ * translate antv-spec to g2plot configuration
+ * @param spec
+ * @returns configuration to plot g2plot
+ */
 export function toG2PlotConfg(spec: ChartAntVSpec) {
+  // g2plot configuration
   const config: Record<string, any> = {};
+
+  // chart type and g2plot config (to return)
   const configs = {
     chartType: '',
     config,
   };
-  // convert chart type
+
+  // step 1: convert chart type
   const chartType = markToChart(spec);
   configs.chartType = chartType;
-  // if not valid g2plot type
+  // if not valid g2plot type or not supported yet
   if (!chartType) {
-    return configs;
+    return {
+      chartType: '',
+      config,
+    };
   }
 
-  // convert basis
+  // step 2: convert basis
   if (spec.basis) {
     const { basis } = spec;
     // to remove `type` in basis because G2Plot config has property with same name
     const { type, ...basisWithoutType } = basis;
     if (type !== 'chart') {
-      return configs;
+      return {
+        chartType: '',
+        config,
+      };
     }
     configs.config = basisWithoutType;
   }
 
-  // convert mark style
+  // step 3: convert mark style
   if (spec.layer.length === 1 && 'mark' in spec.layer[0]) {
     if (typeof spec.layer[0].mark !== 'string') {
+      // object style to describe 'mark'
       if (spec.layer[0].mark.style) {
         const styles = spec.layer[0].mark.style;
-        // donut chart
+        // for donut chart
         if (styles.innerRadius) {
           // TODO actual innerRadius
           // user input innerRadius may be `px`, but G2Plot treat it as the ratio to the drawing area
           configs.config.innerRadius = styles.innerRadius >= 0 && styles.innerRadius < 1 ? styles.innerRadius : 0.6;
         }
+
+        // for single color declaration of mark
+        if (styles.color) {
+          configs.config.color = styles.color;
+        }
       }
+
       // line chart && area chart
       if (spec.layer[0].mark.interpolate) {
         if (spec.layer[0].mark.interpolate === 'step') {
@@ -94,12 +121,13 @@ export function toG2PlotConfg(spec: ChartAntVSpec) {
       }
     }
   }
-  // convert data
+
+  // step 4: convert data
   if (spec.data.type === 'json-array') {
     configs.config.data = spec.data.values;
   }
 
-  // convert encoding
+  // step 5: convert encoding
   if (spec.layer.length === 1 && 'encoding' in spec.layer[0]) {
     const layer = spec.layer[0];
     Object.keys(layer.encoding).forEach((key) => {
