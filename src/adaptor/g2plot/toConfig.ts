@@ -193,7 +193,11 @@ export function toG2PlotConfg(spec: ChartAntVSpec) {
       } else if (key === 'theta') {
         configs.config.angleField = layer.encoding[key]?.field;
       } else if (key === 'color') {
-        if (CHART_TYPES_WITH_STACK.includes(chartType)) {
+        // if have color encoding, ignore color setting in mark style
+        if (Object.keys(configs.config).includes('color')) {
+          delete configs.config.color;
+        }
+        if (CHART_TYPES_WITH_STACK.includes(chartType) || chartType === 'Line') {
           // stacking
           configs.config.seriesField = layer.encoding[key]?.field;
           configs.config.isStack = true;
