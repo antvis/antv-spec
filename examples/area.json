@@ -1,5 +1,4 @@
 {
-  "$schema": "https://gw.alipayobjects.com/os/antfincdn/YsVcObYeV9/antv-spec.json",
   "basis": {
     "type": "chart"
   },
@@ -19,7 +18,12 @@
   },
   "layer": [
     {
-      "mark": "area",
+      "mark": {
+        "type": "area",
+        "style": {
+          "color": "#8b8b8b"
+        }
+      },
       "encoding": {
         "x": {
           "field": "year",

@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Ajv from 'ajv';
 import MonacoEditor from 'react-monaco-editor';
-import { AntVSpec } from '../../src';
+import { AntVSpec, ChartAntVSpec } from '../../src';
 import specSchema from '../../build/antv-spec.json';
 import demos from '../../examples';
-import { specToG2Plot } from './adaptor/spec-g2plot';
+import { specToG2Plot } from '../../src/adaptor';
 import { specToG6 } from './adaptor/spec-g6';
-import { g2plotRender } from './render/g2plotRender';
 import { g6Render } from './render/g6Render';
 
 const ajv = new Ajv();
@@ -45,21 +44,7 @@ export default function App() {
         visType = 'chart';
       }
       if (visType === 'chart') {
-        const g2plotCfg = specToG2Plot(spec as AntVSpec);
-        // @ts-ignore
-        if (chart.current && spec && g2plotCfg.chartType && chart.current.type === g2plotCfg.chartType.toLowerCase()) {
-          // @ts-ignore
-          chart.current.update(g2plotCfg.config);
-        } else {
-          if (chart.current) {
-            // @ts-ignore
-            chart.current.destroy();
-          }
-          // @ts-ignore
-          const plot = g2plotRender(canvas.current, g2plotCfg);
-          // @ts-ignore
-          chart.current = plot;
-        }
+        specToG2Plot(spec as ChartAntVSpec, document.getElementById('container')!);
       } else if (visType === 'graph') {
         const g6Cfg = specToG6(spec as AntVSpec);
         if (chart.current) {
