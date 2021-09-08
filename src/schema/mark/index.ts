@@ -69,15 +69,8 @@ interface MarkStyleConfig {
   innerRadius?: number;
 }
 
-export type ColorCfg =
-  | {
-      type: 'rgb' | 'RGB';
-      value: RGBColor;
-    }
-  | {
-      type: 'hsl' | 'HSL';
-      value: HSLColor;
-    };
+// current support hex string
+export type ColorCfg = string;
 
 export interface RGBColor {
   /**
