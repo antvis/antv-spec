@@ -81,3 +81,11 @@ export default function App() {
 }
 
 ```
+
+
+## Documentation
+
+This project is still an alpha version. We eagerly welcome any contribution.
+
+For more usages, please check the [Quick API](./API.md).
+

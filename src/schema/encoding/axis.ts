@@ -50,7 +50,7 @@ export interface Axis {
    */
   ticks?: boolean;
   /**
-   * wheter to draw the domain line of the axis
+   * whether to draw the domain line of the axis
    */
   domain?: boolean;
 }

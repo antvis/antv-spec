@@ -3,7 +3,7 @@ import { Aggregate } from './aggregate';
 import { Scale } from './scale';
 
 export interface Color {
-  field: string;
+  field?: string;
   type: EType;
   aggregate?: Aggregate;
   scale?: Scale;
