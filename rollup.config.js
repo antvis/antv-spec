@@ -1,17 +1,18 @@
-import { uglify } from 'rollup-plugin-uglify';
 import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
+import { terser } from 'rollup-plugin-terser';
 
 module.exports = [
   {
     input: 'src/index.ts',
     output: {
       file: 'dist/index.min.js',
-      name: 'antv-spec',
+      name: 'AntVSpec',
       format: 'umd',
       sourcemap: false,
     },
-    plugins: [resolve(), typescript(), uglify()],
-    external: ['@antv/g2-plot', '@antv/g6']
+    plugins: [resolve(), commonjs(), typescript(), terser()],
+    external: ['@antv/g2plot', '@antv/g6']
   },
 ];
