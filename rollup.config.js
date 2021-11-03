@@ -13,6 +13,6 @@ module.exports = [
       sourcemap: false,
     },
     plugins: [resolve(), commonjs(), typescript(), terser()],
-    external: ['@antv/g2plot']
+    external: ['@antv/g2plot', '@antv/g6']
   },
 ];

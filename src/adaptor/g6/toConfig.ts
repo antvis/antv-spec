@@ -1,15 +1,11 @@
-import { GraphAntVSpec } from '../../../../src';
-import { GraphData } from '../../../../src/schema/data/graphData';
+import { GraphData } from '@src/schema/data/graphData';
+import { GraphAntVSpec } from '../..';
 
 const DEFAULT_WIDTH = 400;
 const DEFAULT_HEIGHT = 300;
 
-interface IScale<T> {
-  range: T[];
-  domain: T[];
-}
 /** Linear scale */
-const linearScaleMap = (scale: IScale<number>, x: number) => {
+const linearScaleMap = (scale, x: number) => {
   const minRange = Math.min(...scale.range);
   const minDomain = Math.min(...scale.domain);
   const maxRange = Math.max(...scale.range);
@@ -62,8 +58,7 @@ export function specToG6Confg(spec: GraphAntVSpec) {
     }
     if (nodesEnc.encoding.color) {
       // have color encoding for nodes
-      const field = nodesEnc.encoding.color?.field as string;
-      const scale = nodesEnc.encoding.color?.scale as IScale<number>;
+      const { field, scale } = nodesEnc.encoding.color;
       const colorMap = new Map();
       let colorId = 0;
       if (scale) {
@@ -110,8 +105,7 @@ export function specToG6Confg(spec: GraphAntVSpec) {
   if (edgesEnc) {
     if (edgesEnc.encoding.color) {
       // have color encoding for edges
-      const field = edgesEnc.encoding.color?.field as string;
-      const scale = edgesEnc.encoding.color?.scale as IScale<number>;
+      const { field, scale } = edgesEnc.encoding.color;
       const colorMap = new Map();
       let colorId = 0;
       if (scale) {
