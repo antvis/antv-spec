@@ -24,29 +24,43 @@ function editorWillMount(monaco: any) {
   });
 }
 
+const isValid = (specStr: string) => {
+  try {
+    const spec = JSON.parse(specStr);
+    return validateSchema(spec);
+  } catch (error) {
+    return false;
+  }
+};
+
 export default function App() {
   const canvas = useRef(null);
   const chart = useRef(null);
 
-  const [spec, setSpec] = useState(demos.areaDemo);
+  const [spec, setSpec] = useState<string>(JSON.stringify(demos.areaDemo));
+  const [isValidSpec, setIsValidSpec] = useState<boolean>(isValid(spec));
 
-  function editorChange(newSpec: any) {
-    setSpec(JSON.parse(newSpec));
+  function editorChange(newSpec: string) {
+    setSpec(newSpec);
   }
 
   useEffect(() => {
-    if (validateSchema(spec)) {
+    setIsValidSpec(isValid(spec));
+
+    if (isValidSpec) {
+      const specJSON = JSON.parse(spec);
+
       // check visualization type
       let visType;
-      if (spec.basis.type === 'graph') {
+      if (specJSON.basis.type === 'graph') {
         visType = 'graph';
       } else {
         visType = 'chart';
       }
       if (visType === 'chart') {
-        specToG2Plot(spec as ChartAntVSpec, document.getElementById('container')!);
+        specToG2Plot(specJSON as ChartAntVSpec, document.getElementById('container')!);
       } else if (visType === 'graph') {
-        const g6Cfg = specToG6(spec as AntVSpec);
+        const g6Cfg = specToG6(specJSON as AntVSpec);
         if (chart.current) {
           // @ts-ignore
           chart.current.destroy();
@@ -68,12 +82,18 @@ export default function App() {
             width="600"
             height="600"
             language="json"
-            defaultValue={JSON.stringify(spec, null, 2)}
+            defaultValue={JSON.stringify(JSON.parse(spec), null, 2)}
             editorWillMount={editorWillMount}
             onChange={editorChange}
           />
         </div>
-        <div id="container" ref={canvas} style={{ flex: 5, height: '600px' }}></div>
+        {isValidSpec ? (
+          <div id="container" key="vis" ref={canvas} style={{ flex: 5, height: '600px' }}></div>
+        ) : (
+          <div id="errormsg" key="err">
+            <h2>invalid spec!</h2>
+          </div>
+        )}
       </div>
       <p style={{ color: 'grey' }}>
         Attention: change encoding to `theta` and `color` before changing mark type to `arc`.
