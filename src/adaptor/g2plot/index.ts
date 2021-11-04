@@ -1,9 +1,9 @@
 import { ChartAntVSpec } from '@src/schema';
-import { toG2PlotConfg } from './toConfig';
+import { specToG2PlotConfig } from './toConfig';
 import { g2plotRender } from './render';
 
 export const specToG2Plot = (spec: ChartAntVSpec, container: HTMLElement) => {
-  const g2plotConfig = toG2PlotConfg(spec);
+  const g2plotConfig = specToG2PlotConfig(spec);
 
   // remove existing chart in the container
   // eslint-disable-next-line no-param-reassign

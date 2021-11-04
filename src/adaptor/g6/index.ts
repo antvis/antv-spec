@@ -1,10 +1,9 @@
 import { GraphAntVSpec } from '@src/schema';
-import { specToG6Confg } from './toConfig';
+import { specToG6Config } from './toConfig';
 import { g6Render } from './render';
 
 export const specToG6Plot = (spec: GraphAntVSpec, container: HTMLElement) => {
-  const g6Config = specToG6Confg(spec);
-
+  const g6Config = specToG6Config(spec);
   // remove existing chart in the container
   // eslint-disable-next-line no-param-reassign
   container.innerHTML = '';

@@ -1,4 +1,3 @@
-import { GraphData } from '@src/schema/data/graphData';
 import { GraphAntVSpec } from '../..';
 
 const DEFAULT_WIDTH = 400;
@@ -13,7 +12,7 @@ const linearScaleMap = (scale, x: number) => {
   return ((maxRange - minRange) / (maxDomain - minDomain)) * (x - minDomain) + minRange;
 };
 
-export function specToG6Confg(spec: GraphAntVSpec) {
+export function specToG6Config(spec: GraphAntVSpec) {
   const config: Record<string, any> = {};
   const g6Cfg = {
     cfg: config,
@@ -37,8 +36,10 @@ export function specToG6Confg(spec: GraphAntVSpec) {
   // convert data to { "nodes": [{...}, ], "links": [{...}, ]}
   const dataVals = spec.data.values;
   const g6Data: Record<string, any> = {};
-  g6Data.nodes = (dataVals as GraphData).nodes;
-  g6Data.edges = (dataVals as GraphData).links;
+  const nodeKey = spec.layout.nodes;
+  const linkKey = spec.layout.links;
+  g6Data.nodes = dataVals[nodeKey];
+  g6Data.edges = dataVals[linkKey];
 
   // mapping size/color encoding of edges and nodes in data
   const { nodes } = g6Data;
@@ -56,7 +57,7 @@ export function specToG6Confg(spec: GraphAntVSpec) {
         updateNode.type = nodesEnc.mark === 'point' ? 'circle' : nodesEnc.mark;
       });
     }
-    if (nodesEnc.encoding.color) {
+    if (nodesEnc.encoding?.color) {
       // have color encoding for nodes
       const { field, scale } = nodesEnc.encoding.color;
       const colorMap = new Map();
@@ -76,7 +77,7 @@ export function specToG6Confg(spec: GraphAntVSpec) {
         });
       }
     }
-    if (nodesEnc.encoding.size) {
+    if (nodesEnc.encoding?.size) {
       // have size encoding for nodes
       const { field, scale } = nodesEnc.encoding.size as any;
       if (scale) {
@@ -90,7 +91,7 @@ export function specToG6Confg(spec: GraphAntVSpec) {
         });
       }
     }
-    if ((nodesEnc.encoding as any).label) {
+    if ((nodesEnc.encoding as any)?.label) {
       const { field } = (nodesEnc.encoding as any).label;
       nodes.forEach((node: any) => {
         const updateNode = node;
@@ -103,7 +104,7 @@ export function specToG6Confg(spec: GraphAntVSpec) {
   const { edges } = g6Data;
   const edgesEnc = 'links' in spec.layer[0] ? spec.layer[0].links : null;
   if (edgesEnc) {
-    if (edgesEnc.encoding.color) {
+    if (edgesEnc.encoding?.color) {
       // have color encoding for edges
       const { field, scale } = edgesEnc.encoding.color;
       const colorMap = new Map();
@@ -122,7 +123,7 @@ export function specToG6Confg(spec: GraphAntVSpec) {
         });
       }
     }
-    if (edgesEnc.encoding.size) {
+    if (edgesEnc.encoding?.size) {
       // have size encoding for edges
       const { field, scale } = edgesEnc.encoding.size as any;
       if (scale) {
