@@ -16,4 +16,6 @@ export interface Layout {
   nodes: string;
   /** the field name used to map links in the `json` type data */
   links: string;
+  /** layout detail configurations */
+  options?: object;
 }

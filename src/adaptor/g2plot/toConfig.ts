@@ -56,7 +56,7 @@ export function markToChart(spec: ChartAntVSpec) {
  * @param spec
  * @returns configuration to plot g2plot
  */
-export function toG2PlotConfg(spec: ChartAntVSpec) {
+export function specToG2PlotConfig(spec: ChartAntVSpec) {
   // g2plot configuration
   const config: Record<string, any> = {};
 

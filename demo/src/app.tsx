@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Ajv from 'ajv';
 import MonacoEditor from 'react-monaco-editor';
-import { AntVSpec, ChartAntVSpec } from '../../src';
+import { ChartAntVSpec, GraphAntVSpec } from '../../src';
 import specSchema from '../../build/antv-spec.json';
 import demos from '../../examples';
-import { specToG2Plot } from '../../src/adaptor';
-import { specToG6 } from './adaptor/spec-g6';
-import { g6Render } from './render/g6Render';
+import { specToG2Plot, specToG6Plot } from '../../src/adaptor';
 
 const ajv = new Ajv();
 const validateSchema = ajv.compile(specSchema);
@@ -25,6 +23,7 @@ function editorWillMount(monaco: any) {
 }
 
 const isValid = (specStr: string) => {
+  console.log('test valid', specStr);
   try {
     const spec = JSON.parse(specStr);
     return validateSchema(spec);
@@ -35,7 +34,6 @@ const isValid = (specStr: string) => {
 
 export default function App() {
   const canvas = useRef(null);
-  const chart = useRef(null);
 
   const [spec, setSpec] = useState<string>(JSON.stringify(demos.areaDemo));
   const [isValidSpec, setIsValidSpec] = useState<boolean>(isValid(spec));
@@ -44,12 +42,17 @@ export default function App() {
     setSpec(newSpec);
   }
 
+  const handleDataSelect = (e: any) => {
+    const demoKey = e.target?.value;
+    setSpec(JSON.stringify((demos as any)[demoKey]));
+  };
+
   useEffect(() => {
-    setIsValidSpec(isValid(spec));
+    const isValidSpec = isValid(spec);
+    setIsValidSpec(isValidSpec);
 
     if (isValidSpec) {
       const specJSON = JSON.parse(spec);
-
       // check visualization type
       let visType;
       if (specJSON.basis.type === 'graph') {
@@ -60,29 +63,33 @@ export default function App() {
       if (visType === 'chart') {
         specToG2Plot(specJSON as ChartAntVSpec, document.getElementById('container')!);
       } else if (visType === 'graph') {
-        const g6Cfg = specToG6(specJSON as AntVSpec);
-        if (chart.current) {
-          // @ts-ignore
-          chart.current.destroy();
-        }
-        // @ts-ignore
-        const plot = g6Render(canvas.current, g6Cfg);
-        // @ts-ignore
-        chart.current = plot;
+        specToG6Plot(specJSON as GraphAntVSpec, document.getElementById('container')!);
       }
     }
   }, [spec]);
 
   return (
     <div>
-      <h2>antv-spec to G2Plot</h2>
+      <h2>antv-spec to G2Plot/G6Plot</h2>
+      <div>
+        Spec Examples:
+        <select onChange={handleDataSelect} style={{ width: 160 }}>
+          {Object.keys(demos).map((demoKey) => {
+            return (
+              <option value={demoKey} key={demoKey}>
+                {demoKey}
+              </option>
+            );
+          })}
+        </select>
+      </div>
       <div style={{ display: 'flex', marginTop: '50px' }}>
         <div style={{ flex: 5 }}>
           <MonacoEditor
             width="600"
             height="600"
             language="json"
-            defaultValue={JSON.stringify(JSON.parse(spec), null, 2)}
+            value={JSON.stringify(JSON.parse(spec), null, 2)}
             editorWillMount={editorWillMount}
             onChange={editorChange}
           />
@@ -92,6 +99,7 @@ export default function App() {
         ) : (
           <div id="errormsg" key="err">
             <h2>invalid spec!</h2>
+            <div id="container" key="vis" ref={canvas} style={{ flex: 5, height: '600px' }}></div>
           </div>
         )}
       </div>
