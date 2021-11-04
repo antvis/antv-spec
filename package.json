@@ -30,6 +30,7 @@
     "ci": "run-s schema lint test build",
     "setup:demo": "cd demo && npm install --package-lock=false",
     "start:demo": "npm run setup:demo && cd demo && npm start",
+    "deploy:demo": "cd demo && npm run deploy:site",
     "one-stop-setup": "npm install --package-lock=false && run-s setup:demo ci",
     "prepublishOnly": "npm run ci",
     "preversion": "npm run lint",
