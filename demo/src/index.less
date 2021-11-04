@@ -1,0 +1,30 @@
+@import 'antd/dist/antd.less';
+
+.vis-wrapper {
+  position: relative;
+  height: 600px;
+  width: 100%;
+  overflow: hidden;
+  flex: 5;
+}
+
+.vis {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.vis-mask {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(141, 65, 65, 0.5);
+  bottom: -100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h2 {
+    color: black;
+  }
+}
