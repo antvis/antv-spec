@@ -16,3 +16,5 @@ export const specToG2Plot = (spec: ChartAntVSpec, container: HTMLElement) => {
 
   return null;
 };
+
+export { g2plotRender };
