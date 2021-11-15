@@ -1,7 +1,7 @@
 import { GraphAntVSpec } from '../..';
 
-const DEFAULT_WIDTH = 400;
-const DEFAULT_HEIGHT = 300;
+const DEFAULT_WIDTH = 1000;
+const DEFAULT_HEIGHT = 600;
 
 /** Linear scale */
 const linearScaleMap = (scale, x: number) => {

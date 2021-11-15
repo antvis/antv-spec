@@ -15,3 +15,5 @@ export const specToG6Plot = (spec: GraphAntVSpec, container: HTMLElement) => {
 
   return null;
 };
+
+export { g6Render };
