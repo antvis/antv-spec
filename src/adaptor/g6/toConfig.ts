@@ -104,6 +104,12 @@ export function specToG6Config(spec: GraphAntVSpec) {
   const { edges } = g6Data;
   const edgesEnc = 'links' in spec.layer[0] ? spec.layer[0].links : null;
   if (edgesEnc) {
+    if (edgesEnc.mark) {
+      edges.forEach((edge: any) => {
+        const updateEdge = edge;
+        updateEdge.type = edgesEnc.mark;
+      });
+    }
     if (edgesEnc.encoding?.color) {
       // have color encoding for edges
       const { field, scale } = edgesEnc.encoding.color;
