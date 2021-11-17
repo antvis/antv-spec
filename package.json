@@ -4,8 +4,8 @@
   "description": "A declarative grammar that supports various technology stacks of AntV.",
   "main": "lib/src/index.js",
   "types": "lib/src/index.d.ts",
-  "unpkg": "dist/index.js",
-  "module": "es/src/index.js",
+  "unpkg": "dist/index.min.js",
+  "module": "esm/src/index.js",
   "files": [
     "esm",
     "lib",
