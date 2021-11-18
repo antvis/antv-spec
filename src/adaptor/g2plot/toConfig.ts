@@ -181,6 +181,10 @@ export function specToG2PlotConfig(spec: ChartAntVSpec) {
             }
           } else if (tmpAxis && Object.prototype.hasOwnProperty.call(tmpAxis, prop)) {
             tmpAxisCfg[prop] = tmpAxis[prop];
+
+            if (prop === 'min' || prop === 'max') {
+              tmpAxisCfg[`${prop}Limit`] = tmpAxis[prop];
+            }
           }
         });
         if (tmpAxis) {
