@@ -1,4 +1,4 @@
-import { ChartAntVSpec } from '@src/schema';
+import { ChartAntVSpec } from '../../schema';
 import { specToG2PlotConfig } from './toConfig';
 import { g2plotRender } from './render';
 

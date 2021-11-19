@@ -1,4 +1,4 @@
-import { GraphAntVSpec } from '@src/schema';
+import { GraphAntVSpec } from '../../schema';
 import { specToG6Config } from './toConfig';
 import { g6Render } from './render';
 

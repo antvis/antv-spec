@@ -1,4 +1,4 @@
-import { GraphAntVSpec } from '../..';
+import { GraphAntVSpec } from '../../schema';
 
 const DEFAULT_WIDTH = 1000;
 const DEFAULT_HEIGHT = 600;
