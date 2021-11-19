@@ -1,6 +1,6 @@
 {
   "name": "@antv/antv-spec",
-  "version": "0.1.0-alpha.16",
+  "version": "0.1.0-alpha.17",
   "description": "A declarative grammar that supports various technology stacks of AntV.",
   "main": "lib/src/index.js",
   "types": "lib/src/index.d.ts",
