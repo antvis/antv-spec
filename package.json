@@ -23,7 +23,7 @@
     "build:umd": "rimraf ./dist && rollup -c && npm run size",
     "build:cjs": "rimraf ./lib && tsc --module commonjs --outDir lib",
     "build:esm": "rimraf ./esm && tsc --module ESNext --outDir esm",
-    "build": "run-p build:*",
+    "build": "run-p build:* && npm run size",
     "clean": "rimraf lib esm dist",
     "schema": "mkdir -p build && ts-json-schema-generator -f tsconfig.json -p src/index.ts -t AntVSpec --no-type-check --no-ref-encode > build/antv-spec.json",
     "test": "jest",
@@ -103,7 +103,7 @@
   "limit-size": [
     {
       "path": "dist/index.min.js",
-      "limit": "8 Kb",
+      "limit": "10 Kb",
       "gzip": true
     },
     {
