@@ -35,8 +35,7 @@
     "prepublishOnly": "npm run ci",
     "preversion": "npm run lint",
     "version": "npm run format && git add -A src",
-    "postversion": "git push && git push --tags",
-    "postinstall": "npm run schema"
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
