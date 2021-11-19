@@ -1,4 +1,4 @@
-import { ChartAntVSpec, AxisLabelProps, AxisProps, AxisTitleProps } from '../..';
+import { ChartAntVSpec, AxisLabelProps, AxisProps, AxisTitleProps } from '../../schema';
 
 export type G2PlotType = 'Line' | 'Area' | 'Column' | 'Bar' | 'Pie' | 'Rose' | 'Scatter' | 'Histogram' | 'Heatmap';
 
