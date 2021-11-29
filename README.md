@@ -1,6 +1,8 @@
 # antv-spec
 A declarative grammar that supports various technology stacks of AntV.
 
+> WIP: This is still an experimental project. Its purpose is to build a low-level declarative language that can support all AntV visualization libraries(statistic chart, graph, map, etc.) as an infrastructure for intelligent visualization.
+
 ## Features
 **schema**: uniform visualization schema for AntV  
 **adaptor**: translate schema to chart library
@@ -89,3 +91,8 @@ This project is still an alpha version. We eagerly welcome any contribution.
 
 For more usages, please check the [Quick API](./API.md).
 
+## Inspiration
+
+[Vega](https://vega.github.io/vega/) - Vega is a visualization grammar, a declarative language for creating, saving, and sharing interactive visualization designs.
+
+[Vega-Lite](https://vega.github.io/vega-lite/) - Vega-Lite is a high-level grammar of interactive graphics. It provides a concise, declarative JSON syntax to create an expressive range of visualizations for data analysis and presentation.
